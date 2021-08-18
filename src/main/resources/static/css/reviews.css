@@ -1,0 +1,23 @@
+@import "main.css";
+
+#review-table{
+    display: flex;
+    width: 100%;
+}
+
+#review-container{
+    align-self: flex-start;
+    margin-top: 50px;
+    margin-left: 40px;
+    width: 80%;
+}
+
+#leave-review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+

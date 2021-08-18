@@ -1,0 +1,39 @@
+@import "main.css";
+
+
+#popular-games{
+    margin-top: 40px;
+    position: relative;
+    width: 70%;
+}
+
+#current-pop-games{
+    justify-content: space-evenly;
+    display: flex;
+}
+
+#review-table{
+    display: flex;
+    position: relative;
+    width: 60%;
+    margin-top: 70px;
+}
+
+#game-demos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin-top: 60px;
+}
+
+#demo-title{
+    width: 80%;
+}
+
+
+
+.horizontal-flex.center-game-title{
+    margin-top: 20px;
+    justify-content: center;
+}

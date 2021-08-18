@@ -1,0 +1,42 @@
+@import "main.css";
+
+#profile-card{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+#review-table{
+    display: inline;
+    width: 70%;
+}
+
+.vertical-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbnail{
+    width: 180px;
+    height: 200px;
+    border-radius: 5px;
+}
+.score-container{
+    display: flex; 
+    height: 220px;
+    align-items: center;
+    justify-content: center;
+}
+
+.score{
+    display: flex;
+    border-radius: 10px;
+    height: 60px;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 99, 71);
+}
