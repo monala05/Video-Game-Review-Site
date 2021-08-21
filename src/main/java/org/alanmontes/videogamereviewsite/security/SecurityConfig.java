@@ -3,23 +3,22 @@ package org.alanmontes.videogamereviewsite.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-/*
+
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-*/
 
 @Configuration
-//@EnableWebSecurity
-public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	/*
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
@@ -38,6 +37,14 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 		daoAuthenticationProvider.setPasswordEncoder(pswdEncoder());
 		return daoAuthenticationProvider;
 	}
+	
+	@Override
+	public void configure(WebSecurity web){
+		web
+		.ignoring()
+		.antMatchers("/js/**", "/images/**", "/css/**", "/resources/**", "/scripts/**");
+	}
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -50,7 +57,8 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 		
 		.authorizeRequests()
 		// Permit all users to access the register page and register post method
-		.antMatchers("/login", "/register", "/registerNewUser").permitAll()
+		//Anyone can access these pages
+		.antMatchers("/login", "/register", "/registerNewUser", "/").permitAll()
 		// Restrict Admin page to "ADMIN" roles
 		.antMatchers("/admin").hasRole("ADMIN")
 		.anyRequest().authenticated()
@@ -67,9 +75,8 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 		.logout().invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/index").permitAll();
+		.logoutSuccessUrl("/").permitAll();
 	}
 	
-	*/
 
 }

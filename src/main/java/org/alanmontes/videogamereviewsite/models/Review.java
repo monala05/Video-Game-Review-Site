@@ -73,6 +73,14 @@ public class Review {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
 
 	@Override
 	public int hashCode() {

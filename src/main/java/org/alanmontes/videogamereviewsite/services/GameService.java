@@ -11,4 +11,5 @@ public interface GameService {
 	public List<Game> findAllGames();
 	public List<Game> findGamesBySystem(String system);
 	public List<Game> findGamesByGenre(String genre);
+	public Game save(Game game);
 }

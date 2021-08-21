@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -23,42 +25,17 @@
 	<%@include file="navigation.html"%>
 	 <div id = "main-body">
         <div id = "profile-card">
-            <h1 style = "margin-bottom: 20px;">Username</h1>
+            <h1 style = "margin-bottom: 20px;">${user.getUsername()}</h1>
             <i class="fas fa-user-astronaut" style = "font-size: 140px;"></i>
-            <form action=""></form>
             <div id = "user-details">
-                <form>
-                    <div class="form-group row info">
-                      <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="staticName" value="Alan Montes">
-                      </div>
-                    </div>
-
-                    <div class="form-group row info">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="alan@example.com">
-                        </div>
-                    </div>
-
-                    
-                    <div class="form-group row info">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">System</label>
-                        <div class="col-sm-10">
-                          <input type="text" readonly class="form-control-plaintext" id="staticSystem" value="Xbox">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn mb-2" style="background-color:tomato; color: whitesmoke;">Update account</button>
-
-                 </form>
-        
+        		<h1>${user.getName()}</h1>
+        		<h1>${user.getEmail()}</h1>
+        		<h1>System</h1>
             </div>
         </div>
 
         <div id = "review-table" class = "user-reviews">
-            <h1 class = "header-fonts" style="font-size: 68px;">Username's reviews</h1>
+            <h1 class = "header-fonts" style="font-size: 68px;">${user.getUsername()}'s reviews</h1>
             <table class="table">
                 <thead class="thead-dark">
                   <tr>

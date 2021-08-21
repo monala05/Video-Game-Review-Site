@@ -25,9 +25,10 @@
 	 	<div id = "login-card" style = "border: solid">
 	 		<h1>Login</h1>
 	 		<div id = "login-form">
-	 			<form action="" id = "login-body">
-	 				<input type = "text" placeholder = "username" id = "username" name = "username" required><br>
-	 				<input type = "text" placeholder = "password" id = "username" name = "username" required><br>	
+	 			<form action="./login" id = "login-body" method ="post">
+	 				<input style="color: black;" type = "text" placeholder = "username" id = "username" name = "username" required><br>
+	 				<input style="color: black;" type = "text" placeholder = "password" id = "password" name = "password" required><br>
+	 				<input style="color: black;" type = "submit" value = "submit"/><br>	
 	 			</form>
 	 		</div>
 	 		<div id ="register">

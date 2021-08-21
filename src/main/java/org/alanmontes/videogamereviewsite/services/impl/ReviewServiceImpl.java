@@ -2,6 +2,7 @@ package org.alanmontes.videogamereviewsite.services.impl;
 
 import java.util.List;
 
+import org.alanmontes.videogamereviewsite.models.Game;
 import org.alanmontes.videogamereviewsite.models.Review;
 import org.alanmontes.videogamereviewsite.repositories.ReviewRepository;
 import org.alanmontes.videogamereviewsite.services.ReviewService;
@@ -36,6 +37,11 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public Review save(Review review) {
 		return reviewRepository.save(review);
+	}
+
+	@Override
+	public List<Review> findAllGamesWithReviewAndUserJoin() {
+		return reviewRepository.findAllWithGameAndUserJoin();
 	}
 
 }

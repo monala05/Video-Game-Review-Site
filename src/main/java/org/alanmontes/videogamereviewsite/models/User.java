@@ -29,7 +29,10 @@ public class User{
 	private String email;
 	
 	@Column(name = "username")
-	private String userName;
+	private String username;
+	
+	@Column(name = "password")
+	private String password;
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Review> review = new HashSet<>();
@@ -40,10 +43,6 @@ public class User{
 	@ManyToMany(mappedBy = "users")
 	private Set<Game> games = new HashSet<>();
 	
-	public String getUserName() {
-		return userName;
-	}
-	
 	public User() {
 		
 	}
@@ -51,9 +50,9 @@ public class User{
 	public User(String name, String email, String userName) {
 		this.name = name;
 		this.email = email;
-		this.userName = userName;
+		this.username = userName;
 	}
-
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -78,13 +77,56 @@ public class User{
 		this.email = email;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Review> getReview() {
+		return review;
+	}
+
+	public void setReview(Set<Review> review) {
+		this.review = review;
+	}
+
+	public Set<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(Set<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public Set<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(Set<Game> games) {
+		this.games = games;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, name, userId, userName);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + userId;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
 
 	@Override
@@ -96,16 +138,36 @@ public class User{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(name, other.name) && userId == other.userId
-				&& Objects.equals(userName, other.userName);
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (userId != other.userId)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", userName=" + userName + "]";
+		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", username=" + username
+				+ ", password=" + password + ", review=" + review + ", comment=" + comment + ", games=" + games + "]";
 	}
-	
-	
 
 	
 }

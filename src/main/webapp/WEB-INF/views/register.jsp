@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -20,7 +21,35 @@
 <body>
 	<%@include file = "navigation.html"%>
 	 <div id = "main-body">
-	 	<h1>register</h1>
+	  	<h1>Registration Page</h1>
+		<form:form action="registerNewUser" method="post" modelAttribute="newUser">
+		<div>
+			<label>Username:</label>
+			<form:input type="text" path="username" name="username" style = "color: black;"/>
+			<form:errors path="username" cssClass="error" />
+		</div>
+		<div>
+			<label>Password:</label>
+			<form:input type="text" path="password" name="password" style = "color: black;"/>
+			<form:errors path="password" cssClass="error" />
+		</div>
+		<div>
+			<label>name:</label>
+			<form:input type="text" path="name" name="name" style = "color: black;"/>
+			<form:errors path="username" cssClass="error" />
+		</div>
+		<div>
+			<label>email:</label>
+			<form:input type="text" path="email" name="email" style = "color: black;"/>
+			<form:errors path="password" cssClass="error" />
+		</div>
+		
+		
+		<div>
+			<input type="submit" value="Submit" style = "color: black;"/>
+		</div>
+	</form:form>
+	<a href="/">Cancel</a>
 	 </div>
 </body>
 </html>

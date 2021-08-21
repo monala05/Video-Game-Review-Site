@@ -38,4 +38,10 @@ public class GameServiceImpl implements GameService{
 		return gameRepository.findByGenre(genre);
 	}
 
+	@Override
+	public Game save(Game game) {
+		return gameRepository.save(game);
+	}
+
+
 }

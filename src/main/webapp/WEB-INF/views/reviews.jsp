@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang = en>
-<head>
+<head> 
 <meta charset="ISO-8859-1">
 <!--My stylesheet-->
 <link rel='stylesheet' type='text/css' media='screen' href='css/reviews.css'>
@@ -22,46 +23,64 @@
 </head>
 <body>
 	<%@include file="navigation.html"%>
-	
-	    <div id = "main-body">
-
+    <div id = "main-body">
         <div id = "leave-review">
             <h1>Leave a review!</h1>
             <div id="review-form-container">
-                <form:form method = "POST" action="registerNewReview" id = "review-form" modelAttribute = "newReview">
-                	<div style = "color:black">
-                    	<label for="score">Score:</label>
-                    	<form:input type="number" id ="score" path ="score"/>
-                    	<form:errors path="score" cssClass="error" />
-                    </div>
-                    <div style = "color:black">
-                    	<label for="comment">Comment</label>
-                   		<form:input type="text" path="reviewText"/>
-                   		<form:errors path="reviewText" cssClass="error"/>
-  					</div>
-  					<div>
-                    	<input type = "submit" value = "submit"/>
-                    </div>
+                <form:form method = "POST" action="registerNewReview" id="review-form" modelAttribute="newComposite">            
+                   	<label for="name">Name</label>
+                   	<form:input type="text" id="name" path="game.gameName" style="color:black"/>
+                   	<form:errors path="game.gameName" cssClass="error" />
+                   	
+                   	<label for="genre">Genre</label>
+                   	<form:input type="text" id="genre" path="game.genre" style="color:black"/>
+                   	<form:errors path="game.genre" cssClass="error" />
+                   	
+                   	<label for="system">System</label>
+                   	<form:input type="text" id="system" path="game.system" style="color:black"/>
+                   	<form:errors path="game.system" cssClass="error" />  
+                   	           		
+                	<label for="score">Score</label>
+                	<form:input type="number" id="score" path="review.score" style="color:black"/>
+                	<form:errors path="review.score" cssClass="error" />
+                	
+                	<label for="comment">Comment</label>
+               		<form:input type="text" path="review.reviewText" style="color:black"/>
+               		<form:errors path="review.reviewText" cssClass="error"/>
+               		
+					<input type = "submit" value = "submit" style = "color:black"/>
                 </form:form>
             </div>
         </div>
+       <div id = "review-container">
+           <h1>Fresh reviews</h1>
+           <h3>top 20</h3>
+           <div id = "review-table" class = "reviews">
+               <table id="myTable" class = "font-family: Baloo Chettan 2, cursive">
+               	<caption>Last 20 reviews submitted</caption>
+                   <tr>
+					   <th id="game-column" style="width: 150px;">UserName</th>
+                       <th id="game-column" style="width: 150px;">Game</th>
+                       <th id="genre-column" style="width: 150px;">Genre</th>
+                       <th id="console-column" style="width: 150px;">Console</th>
+                       <th id="sccore-column" style="width: 150px;">User score</th>
+                       <th id ="review-comment" style="width:150px;">Review</th>
+                   </tr>
+                   <c:forEach items="${allReviews}" var="review">
+                   	<tr>
+                   		<td>${review.getUser().getUsername()}</td>
+                   		<td>${review.getGame().getGameName()}</td>
+                   		<td>${review.getGame().getGenre()}</td>
+                   		<td>${review.getGame().getSystem()}</td>
+                   		<td>${review.score}</td>
+                       	<td>${review.reviewText}</td>
+                   	</tr>
+               	</c:forEach>
+                 </table>
 
-        <div id = "review-container">
-            <h1>Fresh reviews</h1>
-            <h3>top 20</h3>
-            <div id = "review-table" class = "reviews">
-                <table id="myTable" class = "font-family: Baloo Chettan 2, cursive">
-                	<caption>Last 20 reviews submitted</caption>
-                    <tr>
-                        <th id="game-column" style="width: 150px;">Game</th>
-                        <th id="console-column" style="width: 150px;">Console</th>
-                        <th id="sccore-column" style="width: 150px;">Critic score</th>
-                    </tr>
-                  </table>
-
-            </div>
-        </div>
-    </div>
+           </div>
+       </div>
+   </div>
 </body>
 </body>
 </html>
