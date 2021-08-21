@@ -41,55 +41,22 @@
                   <tr>
                     <th scope="col" colspan = "2">Game</th>
                     <th scope="col" width = "10%">User score</th>
-                    <th scopre="col">User Review</th>
+                    <th scope="col">User Review</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <c:forEach items="${userReviews}" var="review">
                   <tr>
-                    <th scope="row">CyberPunk 2077</th>
+                    <th scope="row">${review.getGameName()}</th>
                     <td>
                         <img src="resources/punk.jpeg" alt="Video game not found" class = "thumbnail">
                     </td>
                     <td class="score-container">
-                        <div class = "score">100%</div>
+                        <div class = "score">${review.getReviews().iterator().next().getScore()}%</div>
                     </td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Proin consequat lorem ut elit tincidunt, nec blandit enim convallis. 
-                        Sed feugiat aliquam augue, eu dapibus erat viverra ut. 
-                        Vestibulum mattis velit mauris, non gravida felis volutpat accumsan.
-                         Curabitur gravida, felis et rutrum posuere, quam lorem convallis ante, 
-                         sed mattis nibh enim sit amet nunc.</td>
+                    <td>${review.getReviews().iterator().next().getReviewText()}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">Call of Duty: Black Ops Cold War</th>
-                    <td>
-                        <img src="resources/cod.jpeg" alt="Video game not found" class = "thumbnail">
-                    </td>
-                    <td class="score-container">
-                        <div class = "score">98%</div>
-                    </td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Proin consequat lorem ut elit tincidunt, nec blandit enim convallis. 
-                        Sed feugiat aliquam augue, eu dapibus erat viverra ut. 
-                        Vestibulum mattis velit mauris, non gravida felis volutpat accumsan.
-                         Curabitur gravida, felis et rutrum posuere, quam lorem convallis ante, 
-                         sed mattis nibh enim sit amet nunc.</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">The world ends with you</th>
-                    <td>
-                        <img src="resources/world.jfif" alt="Video game not found" class = "thumbnail">
-                    </td>
-                    <td class = "score-container">
-                        <div class = "score">85%</div>
-                    </td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Proin consequat lorem ut elit tincidunt, nec blandit enim convallis. 
-                        Sed feugiat aliquam augue, eu dapibus erat viverra ut. 
-                        Vestibulum mattis velit mauris, non gravida felis volutpat accumsan.
-                         Curabitur gravida, felis et rutrum posuere, quam lorem convallis ante, 
-                         sed mattis nibh enim sit amet nunc.</td>
-                  </tr>
+                  </c:forEach>
                 </tbody>
               </table>
         </div>

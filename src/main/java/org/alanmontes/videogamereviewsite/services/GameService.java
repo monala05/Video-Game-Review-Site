@@ -3,6 +3,8 @@ package org.alanmontes.videogamereviewsite.services;
 import java.util.List;
 
 import org.alanmontes.videogamereviewsite.models.Game;
+import org.alanmontes.videogamereviewsite.models.User;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,4 +14,5 @@ public interface GameService {
 	public List<Game> findGamesBySystem(String system);
 	public List<Game> findGamesByGenre(String genre);
 	public Game save(Game game);
+	public List<Game> findAllGamesReviewAndGameJoinWhereUser(@Param("userId") int userId);
 }

@@ -40,7 +40,8 @@
                    	<form:input type="text" id="system" path="game.system" style="color:black"/>
                    	<form:errors path="game.system" cssClass="error" />  
                    	           		
-                	<label for="score">Score</label>
+                	<label fo
+                	="score">Score</label>
                 	<form:input type="number" id="score" path="review.score" style="color:black"/>
                 	<form:errors path="review.score" cssClass="error" />
                 	

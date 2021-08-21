@@ -52,6 +52,7 @@ public class HomeController {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();
 		model.addAttribute(user);
+		model.addAttribute("userReviews", gameService.findAllGamesReviewAndGameJoinWhereUser(user.getUserId()));
 		return "profile";
 	}
 	
