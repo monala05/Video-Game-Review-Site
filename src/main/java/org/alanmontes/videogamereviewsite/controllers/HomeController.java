@@ -1,24 +1,29 @@
 package org.alanmontes.videogamereviewsite.controllers;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.validation.Valid;
 
 import org.alanmontes.videogamereviewsite.models.CompositeModelDto;
 import org.alanmontes.videogamereviewsite.models.Game;
 import org.alanmontes.videogamereviewsite.models.Review;
 import org.alanmontes.videogamereviewsite.models.User;
+import org.alanmontes.videogamereviewsite.repositories.GameRepository;
 import org.alanmontes.videogamereviewsite.security.CurrentUser;
 import org.alanmontes.videogamereviewsite.services.GameService;
 import org.alanmontes.videogamereviewsite.services.ReviewService;
 import org.alanmontes.videogamereviewsite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -26,6 +31,7 @@ public class HomeController {
 	ReviewService reviewService;
 	UserService userService;
 	GameService gameService;
+	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	public HomeController(ReviewService reviewService, UserService userService, 
@@ -61,10 +67,19 @@ public class HomeController {
 		return "search";
 	}
 	
+	@GetMapping("/searchForGame")
+	public String showSearchResults(@RequestParam String keyword, Model model) {
+		
+		logger.info("hello");
+		logger.info(keyword);
+		model.addAttribute("searchResults", gameService.findAllGamesBySearch(keyword));
+		return "search";
+	}
+	
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {
 		return "login";
-	}
+	}	
 	
 	@GetMapping("/register")
 	public String showRegistrationPage(Model model) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -15,12 +16,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600;800&display=swap" rel="stylesheet">
+
 <title>Search Page</title>
 </head>
 <body>
 	<%@include file="navigation.html"%>
     <div id = "main-body">
-	 	<h1>Search</h1>
+    	<div>
+    	<h1>Search</h1>
+	 	<form action="./searchForGame">
+	 		<input type ="text" name="keyword" id="keyword" value="keyword" style="color:black;"/>
+	 		<input type ="submit" style="color:black;"/>
+	 	</form>
+	 	</div>
+	 	
+	 	<div id ="search-results">
+	 			<table>
+	 				<thead>
+	 					<tr>
+	 						<th>Game</th>
+	 						<th>Genre</th>
+	 						<th>System</th>
+	 						<th>Username</th>
+	 						<th>Score</th>
+	 						<th>Review</th>
+	 						<th>Date</th>
+	 					</tr>
+	 				</thead>
+	 				<tbody>
+	 					<c:forEach items = "${searchResults}" var = "game">
+	 						<tr>
+	 							<td>${game.gameName}</td>
+	 							<td>${game.genre}</td>
+	 							<td>${game.system}</td>
+	 							<td>${game.reviews.iterator().next().getUser().username}</td>
+	 							<td>${game.reviews.iterator().next().getScore()}
+	 							<td>${game.reviews.iterator().next().getReviewText()}</td>
+	 							<td>${game.reviews.iterator().next().formatDate()}</td>
+	 						</tr>
+	 					</c:forEach>
+	 				</tbody>
+	 			</table>
+	 	</div>
 	</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package org.alanmontes.videogamereviewsite.models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "review")
@@ -25,6 +30,12 @@ public class Review {
 	
 	@Column(name = "review_text")
 	private String reviewText;
+	
+	@CreationTimestamp
+	private LocalDateTime createDateTime;
+		
+	@UpdateTimestamp
+	private LocalDateTime updateDateTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -80,6 +91,27 @@ public class Review {
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	public LocalDateTime getCreateDateTime() {
+		return createDateTime;
+	}
+
+	public void setCreateDateTime(LocalDateTime createDateTime) {
+		this.createDateTime = createDateTime;
+	}
+
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
+	}
+
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	
+	public String formatDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+		return this.createDateTime.format(formatter);
 	}
 
 	@Override

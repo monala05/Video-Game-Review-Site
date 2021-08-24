@@ -40,15 +40,14 @@
                    	<form:input type="text" id="system" path="game.system" style="color:black"/>
                    	<form:errors path="game.system" cssClass="error" />  
                    	           		
-                	<label fo
-                	="score">Score</label>
+                	<label for="score">Score</label>
                 	<form:input type="number" id="score" path="review.score" style="color:black"/>
                 	<form:errors path="review.score" cssClass="error" />
                 	
                 	<label for="comment">Comment</label>
                		<form:input type="text" path="review.reviewText" style="color:black"/>
                		<form:errors path="review.reviewText" cssClass="error"/>
-               		
+               
 					<input type = "submit" value = "submit" style = "color:black"/>
                 </form:form>
             </div>

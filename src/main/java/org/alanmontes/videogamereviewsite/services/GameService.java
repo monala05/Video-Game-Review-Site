@@ -15,4 +15,5 @@ public interface GameService {
 	public List<Game> findGamesByGenre(String genre);
 	public Game save(Game game);
 	public List<Game> findAllGamesReviewAndGameJoinWhereUser(@Param("userId") int userId);
+	public List<Game> findAllGamesBySearch(@Param("keyword") String keyword);
 }
