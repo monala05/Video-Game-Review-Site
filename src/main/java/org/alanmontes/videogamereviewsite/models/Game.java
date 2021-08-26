@@ -86,7 +86,7 @@ public class Game {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(gameId, gameName, genre, reviews, system);
+		return Objects.hash(gameId, gameName, genre, system);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class Game {
 			return false;
 		Game other = (Game) obj;
 		return gameId == other.gameId && Objects.equals(gameName, other.gameName) && Objects.equals(genre, other.genre)
-				&& Objects.equals(reviews, other.reviews) && Objects.equals(system, other.system);
+				&& Objects.equals(system, other.system);
 	}
 
 	@Override

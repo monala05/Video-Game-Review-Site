@@ -41,7 +41,8 @@
                    	<form:errors path="game.system" cssClass="error" />  
                    	           		
                 	<label for="score">Score</label>
-                	<form:input type="number" id="score" path="review.score" style="color:black"/>
+                	<form:input type="number" id="score" path="review.score" style="color:black"
+                	min="1" max="100"/>
                 	<form:errors path="review.score" cssClass="error" />
                 	
                 	<label for="comment">Comment</label>
@@ -52,7 +53,7 @@
                 </form:form>
             </div>
         </div>
-       <div id = "review-container">
+       	<div id = "review-container">
            <h1>Fresh reviews</h1>
            <h3>top 20</h3>
            <div id = "review-table" class = "reviews">

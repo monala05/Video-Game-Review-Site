@@ -25,13 +25,14 @@
     	<div>
     	<h1>Search</h1>
 	 	<form action="./searchForGame">
-	 		<input type ="text" name="keyword" id="keyword" value="keyword" style="color:black;"/>
+	 		<input type ="text" name="keyword" id="keyword" placeholder="search by title, genre, user, score, or system!"
+	 		style="color:black; width:150%"/>
 	 		<input type ="submit" style="color:black;"/>
 	 	</form>
 	 	</div>
 	 	
 	 	<div id ="search-results">
-	 			<table>
+	 			<table id="search-table">
 	 				<thead>
 	 					<tr>
 	 						<th>Game</th>
@@ -59,5 +60,10 @@
 	 			</table>
 	 	</div>
 	</div>
+	<script>
+		function myFunc(){
+			document.getElementById("search-table").style.visibility = "visible";
+		}
+	</script>
 </body>
 </html>

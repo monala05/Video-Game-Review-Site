@@ -5,12 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.validation.Valid;
 
+import org.alanmontes.videogamereviewsite.models.Comment;
 import org.alanmontes.videogamereviewsite.models.CompositeModelDto;
 import org.alanmontes.videogamereviewsite.models.Game;
 import org.alanmontes.videogamereviewsite.models.Review;
 import org.alanmontes.videogamereviewsite.models.User;
 import org.alanmontes.videogamereviewsite.repositories.GameRepository;
 import org.alanmontes.videogamereviewsite.security.CurrentUser;
+import org.alanmontes.videogamereviewsite.services.CommentService;
 import org.alanmontes.videogamereviewsite.services.GameService;
 import org.alanmontes.videogamereviewsite.services.ReviewService;
 import org.alanmontes.videogamereviewsite.services.UserService;
@@ -31,14 +33,16 @@ public class HomeController {
 	ReviewService reviewService;
 	UserService userService;
 	GameService gameService;
+	CommentService commentService;
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	public HomeController(ReviewService reviewService, UserService userService, 
-			GameService gameService) {	
+			GameService gameService, CommentService commentService) {	
 		this.reviewService = reviewService;
 		this.userService = userService;
 		this.gameService = gameService;
+		this.commentService = commentService;
 	}
 	
 	@GetMapping("/")
@@ -60,6 +64,11 @@ public class HomeController {
 		model.addAttribute(user);
 		model.addAttribute("userReviews", gameService.findAllGamesReviewAndGameJoinWhereUser(user.getUserId()));
 		return "profile";
+	}
+	
+	@GetMapping("/boards")
+	public String showBoardsPage() {
+		return"boards";
 	}
 	
 	@GetMapping("/search")
@@ -87,13 +96,33 @@ public class HomeController {
 		return "register";
 	}
 	
-//	@GetMapping()
-//	public String getUserDetails(Model model) {
-//		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		User user = currentUser.getUser();
-//		model.addAttribute(user);
-//		return "profile";
-//	}
+	@GetMapping("/pcLobby")
+	public String showPcLobbyPage(Model model) {
+		model.addAttribute("newComment", new Comment());
+		model.addAttribute("pcComments", commentService.findCommentsByBoardJoinUser("PC"));
+		return "pcLobby";
+	}
+	
+	@GetMapping("/nintendoLobby")
+	public String showNintendoLobbyPage(Model model) {
+		model.addAttribute("newComment", new Comment());
+		model.addAttribute("nintendoComments", commentService.findCommentsByBoardJoinUser("Nintendo"));
+		return"nintendoLobby";
+	}
+	
+	@GetMapping("/xboxLobby")
+	public String showXboxLobbyPage(Model model) {
+		model.addAttribute("newComment", new Comment());
+		model.addAttribute("xboxComments", commentService.findCommentsByBoardJoinUser("Xbox"));
+		return "xboxLobby";
+	}
+	
+	@GetMapping("/playstationLobby")
+	public String showPlaystationLobbyPage(Model model) {
+		model.addAttribute("newComment", new Comment());
+		model.addAttribute("playstationComments", commentService.findCommentsByBoardJoinUser("Playstation"));
+		return "playstationLobby";
+	}
 	
   	@PostMapping("/registerNewUser")
 	public String registerNewUser(@Valid @ModelAttribute("newUser") User newUser, 
@@ -101,10 +130,70 @@ public class HomeController {
 		if (result.hasErrors()) {
 			return "register";
 		}
-		User user = userService.save(newUser);
+		userService.save(newUser);
 		return "redirect:/login";
 	}
 	
+  	@PostMapping("/registerNewXboxComment")
+  	public String registerNewXboxComment(@Valid @ModelAttribute("newComment") Comment comment,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "xboxLobby";
+		}
+		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = currentUser.getUser();
+		comment.setBoard("Xbox");
+		comment.setUser(user);
+		
+		commentService.save(comment);
+		return "redirect:/xboxLobby";
+  	}
+  	
+  	@PostMapping("/registerNewPlaystationComment")
+  	public String registerNewPlaystationComment(@Valid @ModelAttribute("newComment") Comment comment,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "xboxLobby";
+		}
+		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = currentUser.getUser();
+		comment.setBoard("Playstation");
+		comment.setUser(user);
+		
+		commentService.save(comment);
+		return "redirect:/playstationLobby";
+  	}
+  	
+  	@PostMapping("/registerNewNintendoComment")
+  	public String registerNewNintendoComment(@Valid @ModelAttribute("newComment") Comment comment,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "nintendoLobby";
+		}
+		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = currentUser.getUser();
+		comment.setBoard("Nintendo");
+		comment.setUser(user);
+		
+		commentService.save(comment);
+		return "redirect:/nintendoLobby";
+  	}
+  	
+  	@PostMapping("/registerNewPcComment")
+  	public String registerNewPcComment(@Valid @ModelAttribute("newComment") Comment comment,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "pcLobby";
+		}
+		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = currentUser.getUser();
+		comment.setBoard("PC");
+		comment.setUser(user);
+		
+		commentService.save(comment);
+		return "redirect:/pcLobby";
+  	}
+  	
   	@PostMapping("/registerNewReview")
 	public String registerNewReview(@Valid @ModelAttribute("newComposite") 
 		CompositeModelDto compositeModelDto, BindingResult result) {
@@ -122,7 +211,7 @@ public class HomeController {
 		compositeModelDto.getReview().setUser(user);
 		
 		//Persist review with foreign key sets
-		Review review = reviewService.save(compositeModelDto.getReview());
+		reviewService.save(compositeModelDto.getReview());
 		return "redirect:/reviews";
 	}
   	

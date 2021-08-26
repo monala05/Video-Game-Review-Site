@@ -1,6 +1,6 @@
 package org.alanmontes.videogamereviewsite.models;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,8 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "comment")
@@ -21,11 +25,23 @@ public class Comment {
 	@Column(name = "comment_id")
 	private int commentId;
 	
+	@Column(name = "topic")
+	private String topic;
+	
+	@Lob
 	@Column(name = "comment_text")
 	private String commentText;
+
+	@Column(name = "board")
+	private String board;
 	
-	@Column(name = "date")
-	private Date date;
+	@Column(name = "create_date_time")
+	@CreationTimestamp
+	private LocalDateTime createDateTime;
+		
+	@Column(name = "update_date")
+	@UpdateTimestamp
+	private LocalDateTime updateDateTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -39,6 +55,14 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
 	public String getCommentText() {
 		return commentText;
 	}
@@ -47,12 +71,28 @@ public class Comment {
 		this.commentText = commentText;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getBoard() {
+		return board;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setBoard(String board) {
+		this.board = board;
+	}
+
+	public LocalDateTime getCreateDateTime() {
+		return createDateTime;
+	}
+
+	public void setCreateDateTime(LocalDateTime createDateTime) {
+		this.createDateTime = createDateTime;
+	}
+
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
+	}
+
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
 	}
 
 	public User getUser() {
@@ -65,7 +105,7 @@ public class Comment {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(commentId, commentText, date, user);
+		return Objects.hash(board, commentId, commentText, createDateTime, topic, updateDateTime);
 	}
 
 	@Override
@@ -77,13 +117,16 @@ public class Comment {
 		if (getClass() != obj.getClass())
 			return false;
 		Comment other = (Comment) obj;
-		return commentId == other.commentId && Objects.equals(commentText, other.commentText)
-				&& Objects.equals(date, other.date) && Objects.equals(user, other.user);
+		return Objects.equals(board, other.board) && commentId == other.commentId
+				&& Objects.equals(commentText, other.commentText)
+				&& Objects.equals(createDateTime, other.createDateTime) && Objects.equals(topic, other.topic)
+				&& Objects.equals(updateDateTime, other.updateDateTime);
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", commentText=" + commentText + ", date=" + date + ", user=" + user
+		return "Comment [commentId=" + commentId + ", topic=" + topic + ", commentText=" + commentText + ", board="
+				+ board + ", createDateTime=" + createDateTime + ", updateDateTime=" + updateDateTime + ", user=" + user
 				+ "]";
 	}
 	
