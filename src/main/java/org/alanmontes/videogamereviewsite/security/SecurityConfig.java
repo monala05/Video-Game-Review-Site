@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//Anyone can access these pages
 		.antMatchers("/login", "/register", "/registerNewUser", "/").permitAll()
 		// Restrict Admin page to "ADMIN" roles
-		.antMatchers("/admin").hasRole("ADMIN")
+		.antMatchers("/admin", "/postGame").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		// Redirect to access denied page if access not authorize for user

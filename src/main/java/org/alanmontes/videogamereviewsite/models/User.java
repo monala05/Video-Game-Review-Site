@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="user")
@@ -22,17 +24,26 @@ public class User{
 	@Column(name = "user_id")
 	private int userId;
 	
+	@NotNull
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "username")
+	@Size(min=2, max=25, message="Username must be between 2 and 25 characters.")
+	@NotNull
+	@Column(name = "username", unique = true)
 	private String username;
 	
+	@Size(min=2, max=100, message="Password must be between 2 and 50 characters.")
+	@NotNull
 	@Column(name = "password")
 	private String password;
+	
+	private String system;
+	
+	private String userRole;
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Review> review = new HashSet<>();
@@ -44,15 +55,20 @@ public class User{
 	private Set<Game> games = new HashSet<>();
 	
 	public User() {
-		
+		this.userRole = "ROLE_USER";
 	}
 	
-	public User(String name, String email, String userName) {
+	
+	public User(int userId, String name, String email, String username, String password) {
+		super();
+		this.userId = userId;
 		this.name = name;
 		this.email = email;
-		this.username = userName;
+		this.username = username;
+		this.password = password;
 	}
-	
+
+
 	public int getUserId() {
 		return userId;
 	}
@@ -93,6 +109,16 @@ public class User{
 		this.password = password;
 	}
 
+	public String getUserRole() {
+		return userRole;
+	}
+
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+
 	public Set<Review> getReview() {
 		return review;
 	}
@@ -109,6 +135,16 @@ public class User{
 		this.comment = comment;
 	}
 
+	public String getSystem() {
+		return system;
+	}
+
+
+	public void setSystem(String system) {
+		this.system = system;
+	}
+
+
 	public Set<Game> getGames() {
 		return games;
 	}
@@ -119,14 +155,7 @@ public class User{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + userId;
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
+		return Objects.hash(comment, email, name, password, system, userId, userRole, username);
 	}
 
 	@Override
@@ -138,35 +167,17 @@ public class User{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (userId != other.userId)
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
+		return Objects.equals(comment, other.comment) && Objects.equals(email, other.email)
+				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
+				&& Objects.equals(system, other.system) && userId == other.userId
+				&& Objects.equals(userRole, other.userRole) && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", review=" + review + ", comment=" + comment + ", games=" + games + "]";
+				+ ", password=" + password + ", system=" + system + ", userRole=" + userRole + ", review=" + review
+				+ ", comment=" + comment + ", games=" + games + "]";
 	}
 
 	

@@ -29,5 +29,10 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 			+ "OR u.username = :keyword \r\n"
 			+ "ORDER BY r.create_date_time DESC", nativeQuery = true)
 	List<Game> search(@Param("keyword") String keyword);
-
+	
+	@Query(value ="SELECT * FROM game\r\n"
+			+ "ORDER BY metacritic_score DESC\r\n"
+			+ "LIMIT 5", nativeQuery = true)
+	List<Game> topGamesByCritic();
+	
 }

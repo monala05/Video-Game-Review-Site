@@ -14,6 +14,8 @@ public interface GameService {
 	public List<Game> findGamesBySystem(String system);
 	public List<Game> findGamesByGenre(String genre);
 	public Game save(Game game);
+	public void deleteGameById(int gameId);
 	public List<Game> findAllGamesReviewAndGameJoinWhereUser(@Param("userId") int userId);
 	public List<Game> findAllGamesBySearch(@Param("keyword") String keyword);
+	public List<Game> topGamesByCritic();
 }

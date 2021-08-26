@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang = en>
 <head>
@@ -29,7 +30,7 @@
                 <div>
                     <div class = "horizontal-flex center-game-title"><p>Game 1</p></div>
                     <div>
-                       <img src="resources/skyward.jpg" alt="skyward sword: legend of zelda"  
+                       <img src="images/skyward.jpg" alt="skyward sword: legend of zelda"  
                        style = "margin-right: 30px;border-radius: 10px;"> 
                     </div>
                 </div>
@@ -37,7 +38,7 @@
                 <div>
                     <div class = "horizontal-flex center-game-title"><p>Game 2</p></div>
                     <div>
-                        <img src="resources/dead.jpg" alt="Cowboy game" 
+                        <img src="images/dead.jpg" alt="Cowboy game" 
                         style="margin-right: 30px; border-radius: 10px;">
                     </div>
                 </div>
@@ -45,7 +46,7 @@
                 <div>
                     <div class = "horizontal-flex center-game-title"><p>Game 3</p></div>
                     <div>
-                        <img src="resources/hades.jpg" alt="Greek game" 
+                        <img src="images/hades.jpg" alt="Greek game" 
                         style="border-radius: 10px;">
                     </div>
                 </div>
@@ -53,38 +54,62 @@
             </div>
 
         </div>
-
+		
         <div id = "review-table" class = "recent-reviews">
             <table class="table">
+            	<caption>Scores provided by metacritic</caption>
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col" colspan = "2">Recent game reviews</th>
-                    <th scope = "col">Critic review</th>
-                    <th scopre = "col">User Review</th>
+                  	<th scope="col" colspan="4"><h2>Best reviewed by critics</h2></th>
+                  </tr>
+                  <tr>
+                    <th scope="col" colspan = "2">Game</th>
+                    <th scope="col">Metacritic score</th>
+                    <th scope="col">Summary</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>MineCraft</td>
-                    <td>100%</td>
-                    <td>5/5</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>MK11</td>
-                    <td>90%</td>
-                    <td>4/5</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Mario Golf</td>
-                    <td>75%</td>
-                    <td>2/5</td>
-                  </tr>
+                	<c:forEach items="${criticReviews}" var="review">
+	                    <tr>
+	                   		<td>${review.gameName}</td>
+	                   		<td><img src="${review.cover}" alt = "pic"/
+	                   			style="width:100px;height:150px;"></td>
+	                   		<td>${review.metacriticScore}</td>
+	                   		<td>${review.summary}</td>
+	                   	</tr>
+               	    </c:forEach>
                 </tbody>
               </table>
         </div>
+        
+        <div id = "review-table" class = "recent-reviews">
+            <table class="table">
+            	<caption>Scores provided by metacritic</caption>
+                <thead class="thead-dark">
+                  <tr>
+                  	<th scope="col" colspan="4"><h2>Best reviewed by our users</h2></th>
+                  </tr>
+                  <tr>
+                    <th scope="col" colspan = "2">Game</th>
+                    <th scope="col">Metacritic score</th>
+                    <th scope="col">Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                	<c:forEach items="${criticReviews}" var="review">
+	                    <tr>
+	                   		<td>${review.gameName}</td>
+	                   		<td><img src="${review.cover}" alt = "pic"/
+	                   			style="width:100px;height:150px;"></td>
+	                   		<td>${review.metacriticScore}</td>
+	                   		<td>${review.summary}</td>
+	                   	</tr>
+               	    </c:forEach>
+                </tbody>
+              </table>
+        </div>        
+        
+        
 
         <div id = "game-demos">
             <div id = "demo-title"><p>Cool demos!</p></div>

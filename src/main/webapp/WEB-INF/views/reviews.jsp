@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang = en>
 <head> 
@@ -24,35 +25,6 @@
 <body>
 	<%@include file="navigation.html"%>
     <div id = "main-body">
-        <div id = "leave-review">
-            <h1>Leave a review!</h1>
-            <div id="review-form-container">
-                <form:form method = "POST" action="registerNewReview" id="review-form" modelAttribute="newComposite">            
-                   	<label for="name">Name</label>
-                   	<form:input type="text" id="name" path="game.gameName" style="color:black"/>
-                   	<form:errors path="game.gameName" cssClass="error" />
-                   	
-                   	<label for="genre">Genre</label>
-                   	<form:input type="text" id="genre" path="game.genre" style="color:black"/>
-                   	<form:errors path="game.genre" cssClass="error" />
-                   	
-                   	<label for="system">System</label>
-                   	<form:input type="text" id="system" path="game.system" style="color:black"/>
-                   	<form:errors path="game.system" cssClass="error" />  
-                   	           		
-                	<label for="score">Score</label>
-                	<form:input type="number" id="score" path="review.score" style="color:black"
-                	min="1" max="100"/>
-                	<form:errors path="review.score" cssClass="error" />
-                	
-                	<label for="comment">Comment</label>
-               		<form:input type="text" path="review.reviewText" style="color:black"/>
-               		<form:errors path="review.reviewText" cssClass="error"/>
-               
-					<input type = "submit" value = "submit" style = "color:black"/>
-                </form:form>
-            </div>
-        </div>
        	<div id = "review-container">
            <h1>Fresh reviews</h1>
            <h3>top 20</h3>
@@ -68,17 +40,61 @@
                        <th id ="review-comment" style="width:150px;">Review</th>
                    </tr>
                    <c:forEach items="${allReviews}" var="review">
-                   	<tr>
-                   		<td>${review.getUser().getUsername()}</td>
-                   		<td>${review.getGame().getGameName()}</td>
-                   		<td>${review.getGame().getGenre()}</td>
-                   		<td>${review.getGame().getSystem()}</td>
+                   <tr>
+                   		<td>${review.user.getUsername()}</td>
+                   		<td>
+                   			${review.game.getGameName()} <br>
+                   			<img src="${review.game.getCover()}" style="width:100px;height:150px;" alt = "img not found"/>
+                   		</td>
+                   		<td>${review.game.getGenre()}</td>
+                   		<td>${review.game.getSystem()}</td>
                    		<td>${review.score}</td>
                        	<td>${review.reviewText}</td>
                    	</tr>
-               	</c:forEach>
-                 </table>
-
+               		</c:forEach>
+                </table>
+           </div>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+	           <div>
+	     	  	<h1>Post game</h1><a href="/postGame"><input type = "button" value="Post" style="color:black;"></a>
+	           </div>
+		   </sec:authorize>
+           
+           
+           <div id="games-table">
+           	 	<table id="search-table">
+	 				<thead>
+	 					<tr>
+	 						<th>Game</th>
+	 						<th>Genre</th>
+	 						<th>System</th>
+	 						<th>Metacritic Score</th>
+	 						<th>Summary</th>
+	 						<th></th>
+	 					</tr>
+	 				</thead>
+	 				<tbody>
+	 					<c:forEach items = "${allGames}" var = "game">
+	 						<tr>
+	 							<td>${game.gameName}
+                   		  		<img src ="${game.cover}" style="width:150px;height:250px;" alt="not found"/></td>
+	 							<td>${game.genre}</td>
+	 							<td>${game.system}</td>
+	 							<td>${game.metacriticScore}</td>
+	 							<td>${game.summary}</td>
+	 							<td>
+	 								<a href="postReview?gameId=${game.gameId}"><input type="button" value = "Make a review" style = "color:black;"/></a>
+	 								
+	 								<form action="deleteReview" method="POST">
+	 									<input type="hidden" value="${game.gameId}" name ="gameId">
+	 									<input type="submit" value = "Delete" class = "btn-danger"/>
+	 								</form>
+	 							</td>
+	 						</tr>
+	 					</c:forEach>
+	 				</tbody>
+	 			</table>
            </div>
        </div>
    </div>

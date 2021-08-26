@@ -54,5 +54,16 @@ public class GameServiceImpl implements GameService{
 		return gameRepository.search(keyword);
 	}
 
+	@Override
+	public List<Game> topGamesByCritic() {
+		return gameRepository.topGamesByCritic();
+	}
+
+	@Override
+	public void deleteGameById(int gameId) {
+		gameRepository.deleteById(gameId);
+		
+	}
+
 
 }

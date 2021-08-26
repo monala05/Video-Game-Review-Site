@@ -16,11 +16,11 @@ class UserIt {
 	
 	@Test
 	void testUserSave() {
-		User user1 = new User("Alan", "alan@email.com", "username");
+		User user1 = new User(0, "Alan", "alan@email.com", "username", null);
 		userRepository.save(user1);
-		User user2 = new User("Patrick", "patric@email.com", "pat");
+		User user2 = new User(0, "Patrick", "patric@email.com", "pat", null);
 		userRepository.save(user2);
-		User user3 = new User("Thiago", "thiago@email.com", "chiago");
+		User user3 = new User(0, "Thiago", "thiago@email.com", "chiago", null);
 		userRepository.save(user3);
 		
 		

@@ -11,11 +11,11 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>{
 	Review findById(int id);
 	List<Review> findAll();
 	List<Review> findByScore(int score);
-	@Query(value = "SELECT * FROM review \r\n"
-			+ "INNER JOIN game \r\n"
-			+ "ON game.game_id = review.review_id\r\n"
-			+ "INNER JOIN user \r\n"
-			+ "ON user.user_id = review.user_id\r\n"
-			+ "ORDER BY create_date_time DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM review\r\n"
+			+ "JOIN user \r\n"
+			+ "ON review.user_id = user.user_id\r\n"
+			+ "JOIN game\r\n"
+			+ "ON review.game_id = game.game_id\r\n"
+			+ "ORDER BY review.review_id DESC", nativeQuery = true)
 	List<Review> findAllWithGameAndUserJoin();
 }

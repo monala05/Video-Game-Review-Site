@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang = "en">
@@ -28,10 +29,13 @@
             <h1 style = "margin-bottom: 20px;">${user.getUsername()}</h1>
             <i class="fas fa-user-astronaut" style = "font-size: 140px;"></i>
             <div id = "user-details">
-        		<h1>${user.getName()}</h1>
-        		<h1>${user.getEmail()}</h1>
+        		<h1>${user.name}</h1>
+        		<h1>${user.email}</h1>
+        		<h1>${user.userRole}</h1>
         		<h1>System</h1>
             </div>
+            <div><a href="./update"><input type="button" value ="update" class="btn-primary"/></a></div>
+            <div><a href="./logout"><input type="button" value="logout" class="btn-danger"/></a></div>
         </div>
 
         <div id = "review-table" class = "user-reviews">
