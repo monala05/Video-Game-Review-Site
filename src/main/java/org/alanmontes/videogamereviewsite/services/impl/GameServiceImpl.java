@@ -3,7 +3,6 @@ package org.alanmontes.videogamereviewsite.services.impl;
 import java.util.List;
 
 import org.alanmontes.videogamereviewsite.models.Game;
-import org.alanmontes.videogamereviewsite.models.User;
 import org.alanmontes.videogamereviewsite.repositories.GameRepository;
 import org.alanmontes.videogamereviewsite.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;

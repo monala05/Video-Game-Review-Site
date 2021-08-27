@@ -10,4 +10,5 @@ public interface ReviewService {
 	public List<Review> findByScore(int score);
 	public Review save(Review review);
 	public List<Review> findAllGamesWithReviewAndUserJoin();
+	public void deleteReviewsByGameId(int gameId);
 }

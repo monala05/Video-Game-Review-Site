@@ -8,6 +8,7 @@ import org.alanmontes.videogamereviewsite.repositories.ReviewRepository;
 import org.alanmontes.videogamereviewsite.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -42,6 +43,12 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public List<Review> findAllGamesWithReviewAndUserJoin() {
 		return reviewRepository.findAllWithGameAndUserJoin();
+	}
+
+	@Override
+	@Transactional
+	public void deleteReviewsByGameId(int gameId) {
+		reviewRepository.deleteByGameIds(gameId);
 	}
 
 }

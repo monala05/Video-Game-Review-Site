@@ -18,6 +18,7 @@ import org.alanmontes.videogamereviewsite.services.CommentService;
 import org.alanmontes.videogamereviewsite.services.GameService;
 import org.alanmontes.videogamereviewsite.services.ReviewService;
 import org.alanmontes.videogamereviewsite.services.UserService;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -89,6 +90,7 @@ public class HomeController {
   	
   	@PostMapping("deleteReview")
   	public String deleteReview(@RequestParam("gameId") int gameId) {
+  		reviewService.deleteReviewsByGameId(gameId);
   		gameService.deleteGameById(gameId);
   		return"redirect:/reviews";
   	}
@@ -114,9 +116,7 @@ public class HomeController {
 	
 	@GetMapping("/searchForGame")
 	public String showSearchResults(@RequestParam String keyword, Model model) {
-		
-		logger.info("hello");
-		logger.info(keyword);
+	
 		model.addAttribute("searchResults", gameService.findAllGamesBySearch(keyword));
 		return "search";
 	}
