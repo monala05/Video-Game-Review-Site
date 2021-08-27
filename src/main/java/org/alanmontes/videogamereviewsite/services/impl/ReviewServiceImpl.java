@@ -51,4 +51,15 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewRepository.deleteByGameIds(gameId);
 	}
 
+	@Override
+	public List<Review> findAllGamesReviewAndGameJoinWhereUser(int id) {
+		
+		return reviewRepository.findAllReviewAndGameJoinWhereUser(id);
+	}
+
+	@Override
+	public List<Review> findReviewByAverageUserScore() {
+		return reviewRepository.findbyAvgUserScore();
+	}
+
 }

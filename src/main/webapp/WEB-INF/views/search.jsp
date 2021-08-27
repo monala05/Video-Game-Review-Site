@@ -47,7 +47,12 @@
 	 				<tbody>
 	 					<c:forEach items = "${searchResults}" var = "game">
 	 						<tr>
-	 							<td>${game.gameName}</td>
+	 							<td>
+	 								<div>
+	 								${game.gameName}
+	 								<img src="${game.cover}" alt="img not found" style="width:100px; height:150px"/>
+	 								</div>
+	 							</td>
 	 							<td>${game.genre}</td>
 	 							<td>${game.system}</td>
 	 							<td>${game.reviews.iterator().next().getUser().username}</td>

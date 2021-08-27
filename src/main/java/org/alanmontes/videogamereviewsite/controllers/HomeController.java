@@ -4,6 +4,8 @@ package org.alanmontes.videogamereviewsite.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -51,7 +53,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String showHomePage(Model model) {
 		model.addAttribute("criticReviews", gameService.topGamesByCritic());
-		model.addAttribute("userReviews");
+		model.addAttribute("userReviews", reviewService.findReviewByAverageUserScore());
 		return "index";
 	}
 	
@@ -100,7 +102,7 @@ public class HomeController {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();
 		model.addAttribute(user);
-		model.addAttribute("userReviews", gameService.findAllGamesReviewAndGameJoinWhereUser(user.getUserId()));
+		model.addAttribute("userReviews", reviewService.findAllGamesReviewAndGameJoinWhereUser(user.getUserId()));
 		return "profile";
 	}
 	

@@ -31,6 +31,8 @@ public class Review {
 	@Column(name = "review_text")
 	private String reviewText;
 	
+	private String averageScore;
+	
 	@CreationTimestamp
 	private LocalDateTime createDateTime;
 		
@@ -93,6 +95,16 @@ public class Review {
 		this.game = game;
 	}
 
+	
+	
+	public String getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
+	}
+
 	public LocalDateTime getCreateDateTime() {
 		return createDateTime;
 	}
@@ -113,6 +125,7 @@ public class Review {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 		return this.createDateTime.format(formatter);
 	}
+	
 
 	@Override
 	public int hashCode() {

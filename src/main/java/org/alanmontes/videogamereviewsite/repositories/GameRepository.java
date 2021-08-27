@@ -11,11 +11,6 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 	List<Game> findAll();
 	List<Game> findBySystem(String system);
 	List<Game> findByGenre(String genre);
-	@Query(value = "SELECT * FROM game \r\n"
-			+ "JOIN review \r\n"
-			+ "ON game.game_id = review.game_id\r\n"
-			+ "WHERE user_id = :userId", nativeQuery = true)
-	List<Game> findAllReviewAndGameJoinWhereUser(@Param("userId") int userId);
 	
 	@Query(value = "SELECT * FROM game AS g\r\n"
 			+ "JOIN review r\r\n"

@@ -44,11 +44,6 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public List<Game> findAllGamesReviewAndGameJoinWhereUser(int userId) {
-		return gameRepository.findAllReviewAndGameJoinWhereUser(userId);
-	}
-
-	@Override
 	public List<Game> findAllGamesBySearch(String keyword) {
 		return gameRepository.search(keyword);
 	}

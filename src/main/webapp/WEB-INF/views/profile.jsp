@@ -49,16 +49,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach items="${userReviews}" var="game">
+                  <c:forEach items="${userReviews}" var="review">
                   <tr>
-                    <th scope="row">${game.gameName}</th>
+                    <th scope="row">${review.game.getGameName()}</th>
                     <td>
-                        <img src="${game.cover}" alt="Video game not found" class = "thumbnail">
+                        <img src="${review.game.getCover()}" alt="Video game not found" class = "thumbnail">
                     </td>
                     <td class="score-container">
-                        <div class = "score">${game.reviews.iterator().next().getScore()}%</div>
+                        <div class = "score">${review.score}%</div>
                     </td>
-                    <td>${game.reviews.iterator().next().getReviewText()}</td>
+                    <td>${review.reviewText}</td>
                   </tr>
                   </c:forEach>
                 </tbody>

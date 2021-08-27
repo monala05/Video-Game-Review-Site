@@ -28,7 +28,7 @@
             <div id = "current-pop-games" class = "horizontal-flex">
 
                 <div>
-                    <div class = "horizontal-flex center-game-title"><p>Game 1</p></div>
+                    <div class = "horizontal-flex center-game-title"><p>Legend of Zelda: Skyward Sword</p></div>
                     <div>
                        <img src="images/skyward.jpg" alt="skyward sword: legend of zelda"  
                        style = "margin-right: 30px;border-radius: 10px;"> 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div>
-                    <div class = "horizontal-flex center-game-title"><p>Game 2</p></div>
+                    <div class = "horizontal-flex center-game-title"><p>Read Dead Redemption 2</p></div>
                     <div>
                         <img src="images/dead.jpg" alt="Cowboy game" 
                         style="margin-right: 30px; border-radius: 10px;">
@@ -44,7 +44,7 @@
                 </div>
 
                 <div>
-                    <div class = "horizontal-flex center-game-title"><p>Game 3</p></div>
+                    <div class = "horizontal-flex center-game-title"><p>Hades</p></div>
                     <div>
                         <img src="images/hades.jpg" alt="Greek game" 
                         style="border-radius: 10px;">
@@ -55,33 +55,6 @@
 
         </div>
 		
-        <div id = "review-table" class = "recent-reviews">
-            <table class="table">
-            	<caption>Scores provided by metacritic</caption>
-                <thead class="thead-dark">
-                  <tr>
-                  	<th scope="col" colspan="4"><h2>Best reviewed by critics</h2></th>
-                  </tr>
-                  <tr>
-                    <th scope="col" colspan = "2">Game</th>
-                    <th scope="col">Metacritic score</th>
-                    <th scope="col">Summary</th>
-                  </tr>
-                </thead>
-                <tbody>
-                	<c:forEach items="${criticReviews}" var="review">
-	                    <tr>
-	                   		<td>${review.gameName}</td>
-	                   		<td><img src="${review.cover}" alt = "pic"/
-	                   			style="width:100px;height:150px;"></td>
-	                   		<td>${review.metacriticScore}</td>
-	                   		<td>${review.summary}</td>
-	                   	</tr>
-               	    </c:forEach>
-                </tbody>
-              </table>
-        </div>
-        
         <div id = "review-table" class = "recent-reviews">
             <table class="table">
             	<caption>Scores provided by metacritic</caption>
@@ -107,22 +80,49 @@
                	    </c:forEach>
                 </tbody>
               </table>
+        </div>
+        
+        <div id = "review-table" class = "recent-reviews">
+            <table class="table">
+            	<caption>Scores provided by our users</caption>
+                <thead class="thead-dark">
+                  <tr>
+                  	<th scope="col" colspan="4"><h2>Best reviewed by our users</h2></th>
+                  </tr>
+                  <tr>
+                    <th scope="col" colspan = "2">Game</th>
+                    <th scope="col">Average user score</th>
+                    <th scope="col">Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                	<c:forEach items="${userReviews}" var="review">
+	                    <tr>
+	                   		<td>${review.game.getGameName()}</td>
+	                   		<td><img src="${review.game.getCover()}" alt = "pic"/
+	                   			style="width:100px;height:150px;"></td>
+	                   		<td>${review.averageScore}</td>
+	                   		<td>${review.game.getSummary()}</td>
+	                   	</tr>
+               	    </c:forEach>
+                </tbody>
+              </table>
         </div>        
         
         
 
         <div id = "game-demos">
-            <div id = "demo-title"><p>Cool demos!</p></div>
+            <div id = "demo-title"><h1>Upcoming games</h1></div>
             <div id = "gifs">
                 <div id = "demo-one">
-                    <p>Game 1</p>
+                    <h3>FIFA 22</h3>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/o1igaMv46SY" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
                 </div>
                 <div id = "demo-two">
-                    <p>Game 2</p>
+                    <h1>Hogwarts Legacy</h1>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/1O6Qstncpnc?controls=0" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
