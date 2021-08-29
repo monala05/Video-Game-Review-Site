@@ -2,3 +2,9 @@
 @import "main.css";
 
 
+#login-card{
+	margin-top:2em;
+	display:flex;
+	width:17%;
+	
+}

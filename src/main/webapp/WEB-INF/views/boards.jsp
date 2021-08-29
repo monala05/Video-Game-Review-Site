@@ -21,10 +21,8 @@
 <body>
 	<%@include file="navigation.html"%>
     <div id = "main-body">
-    	<div>		
-    		<a href = ""><button style = "color:black;">Post</button></a>
-	 	</div>
-	 	
+    	
+    <div style = "font-size:42px; padding:1em;">
 	 	<div>
 	 		<span class="fab fa-xbox"></span>
 	 		<a href="xboxLobby">Xbox lobby</a>
@@ -44,6 +42,7 @@
 	 		<span class="fas fa-desktop"></span>
 	 		<a href="pcLobby">PC lobby</a>
 	 	</div>
+	 </div>
 	</div>
 </body>
 </html>

@@ -48,6 +48,11 @@ public class CommentServiceImpl implements CommentService{
 		return commentRepository.findByBoardJoinUser(board);
 	}
 
+	@Override
+	public void remove(Comment comment) {
+		commentRepository.delete(comment);
+	}
+
 	
 	
 }

@@ -41,6 +41,7 @@ public class HomeController {
 	CommentService commentService;
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	//Injecting all of the app's services to the controller in order to manipulate database
 	@Autowired
 	public HomeController(ReviewService reviewService, UserService userService, 
 			GameService gameService, CommentService commentService) {	
@@ -52,6 +53,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String showHomePage(Model model) {
+		//Add review attributes to populate tables in homepage
 		model.addAttribute("criticReviews", gameService.topGamesByCritic());
 		model.addAttribute("userReviews", reviewService.findReviewByAverageUserScore());
 		return "index";
@@ -59,6 +61,7 @@ public class HomeController {
 	
 	@GetMapping("/reviews")
 	public String showReviewsPage(Model model) {
+		//Add review and game list objects to populate reviews.jsp
 		model.addAttribute("allReviews", reviewService.findAllGamesWithReviewAndUserJoin());
 		model.addAttribute("allGames", gameService.findAllGames());
 		return "reviews";
@@ -66,6 +69,7 @@ public class HomeController {
 	
 	@GetMapping("/postReview")
 	public String showReviewPage(@RequestParam("gameId")int gameId,Model model) {
+		//Makes a review available to bind request data to model
 		model.addAttribute("newReview", new Review());
 		model.addAttribute("gameId", gameId);
 		return "postReview";
@@ -83,6 +87,9 @@ public class HomeController {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();	
 		Game game = gameService.findGameById(gameId);
+		
+		//binds user and game to review model to populate foreign keys with 
+		//correct user and game
 		review.setUser(user);
 		review.setGame(game);
 		
@@ -90,8 +97,9 @@ public class HomeController {
 		return "redirect:/reviews";
 	}
   	
-  	@PostMapping("deleteReview")
-  	public String deleteReview(@RequestParam("gameId") int gameId) {
+  	@PostMapping("deleteGame")
+  	public String deleteGame(@RequestParam("gameId") int gameId) {
+  		//Delete all reviews for that game first, then delete by id
   		reviewService.deleteReviewsByGameId(gameId);
   		gameService.deleteGameById(gameId);
   		return"redirect:/reviews";
@@ -102,6 +110,8 @@ public class HomeController {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();
 		model.addAttribute(user);
+		
+		//Find all games for current user
 		model.addAttribute("userReviews", reviewService.findAllGamesReviewAndGameJoinWhereUser(user.getUserId()));
 		return "profile";
 	}
@@ -138,6 +148,8 @@ public class HomeController {
 	public String showUpdatePage(Model model) {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();
+		
+		//make user available for post controller to use
 		model.addAttribute(user);
 		return "update";
 	}
@@ -156,6 +168,9 @@ public class HomeController {
 		return"nintendoLobby";
 	}
 	
+	/*all lobby controllers make a comment object avaialable for post mapping
+	 * then they display comments related to that page finding by name
+	 */
 	@GetMapping("/xboxLobby")
 	public String showXboxLobbyPage(Model model) {
 		model.addAttribute("newComment", new Comment());
@@ -254,6 +269,8 @@ public class HomeController {
 		if (result.hasErrors()) {
 			return "pcLobby";
 		}
+		
+		//Get Current user from security context
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = currentUser.getUser();
 		comment.setBoard("PC");

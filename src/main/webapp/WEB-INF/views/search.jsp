@@ -22,17 +22,18 @@
 <body>
 	<%@include file="navigation.html"%>
     <div id = "main-body">
-    	<div>
-    	<h1>Search</h1>
-	 	<form action="./searchForGame">
-	 		<input type ="text" name="keyword" id="keyword" placeholder="search by title, genre, user, score, or system!"
-	 		style="color:black; width:150%"/>
-	 		<input type ="submit" style="color:black;"/>
-	 	</form>
+    	<div id="search">
+	    	<h1>Search</h1>
+			 	<form id = "bar" action="./searchForGame">
+			 		<input type ="search" name="keyword" id="keyword" placeholder="search by title, genre, user, score, or system!"
+			 		style="color:black;width:100%;" class ="form-control rounded"/>
+			 		<input type ="submit" style="color:black;" class ="btn btn-light"/>
+			 	</form>
 	 	</div>
 	 	
 	 	<div id ="search-results">
-	 			<table id="search-table">
+	 			<div class = "card bg-dark">
+	 			<table id="search-table" class="table">
 	 				<thead>
 	 					<tr>
 	 						<th>Game</th>
@@ -63,6 +64,7 @@
 	 					</c:forEach>
 	 				</tbody>
 	 			</table>
+	 			</div>
 	 	</div>
 	</div>
 	<script>

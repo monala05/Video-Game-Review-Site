@@ -32,7 +32,17 @@ img{
 .header-fonts{
 	font-weight:600;
 	font-size: 30px;
-        }
+}
+
+.score{
+    display: flex;
+    border-radius: 10px;
+    height: 60px;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 99, 71);
+}
 
 .vertical-flex{
     display: flex;

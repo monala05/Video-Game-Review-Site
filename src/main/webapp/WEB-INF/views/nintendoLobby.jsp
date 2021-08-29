@@ -23,16 +23,23 @@
 	<%@include file="navigation.html"%>
     <div id = "main-body">
     
-	   	<div id="comment-container">
-	    	<h1>Nintendo Discussion</h1>
-	   		<a href = "./boards"><button>Back to main lobby</button></a>
-	   
-	         <div id = "review-table" class = "reviews">
-	             <table id="myTable" class = "font-family: Baloo Chettan 2, cursive">
+    	<h1 style="margin-top: 1em;">Nintendo Discussion</h1>
+	   	<a href = "./boards"><button style="color:black; margin-bottom:5px" class="btn btn-light">Back to main lobby</button></a>
+	   	<a href="#submit-form"><button style="color:black; margin-bottom:20px;" class ="btn btn-light">Make a post</button></a>
+    	<div id="comment-container" style = "width:70%;">
+	         <div id = "review-table" class = "reviews bg-light">
+	             <table id="myTable" class = "table">
+	             			<tr>
+	             				<th style= "width:25%" class = "text-dark">User</th>
+	             				<th class = "text-dark">Comment</th>
+	             			</tr>
 	                  <c:forEach items="${nintendoComments}" var="comment">
 	                 		<tr>
-	                 			<td>${comment.user.getUsername()} ${comment.createDateTime}</td>
-	                     		<td>${comment.topic} ${comment.commentText}</td>
+	                 			<td>
+	                 				<div class = "text-dark">${comment.user.getUsername()} </div>
+	                 				<div class = "text-dark">${comment.createDateTime}</div>
+	                 			</td>
+	                     		<td class = "text-dark">${comment.topic} ${comment.commentText}</td>
 	                 		</tr>
 	             		</c:forEach>
 	              </table>
@@ -40,18 +47,18 @@
 		</div>
 		       
 	   <h2>What are your thoughts on your favorite games?</h2>
-		<div>		
-	   		<form:form action = "registerNewNintendoComment" method = "POST" modelAttribute = "newComment">
-	   			<label for = "topic">Topic</label>
-	   			<form:input type = "text" id = "about" name = "about" path = "topic"/>
-	   			<form:errors path= "topic" cssClass="error" /><br>
-	   			
-	   			<label for = "comment">Thoughts</label><br>
-	   			<form:textarea id ="comment" name = "comment" path = "commentText" rows ="5" cols = "80" style = "color: black;"></form:textarea>
-	   			<form:errors path="commentText" cssClass="error" /><br>
-	   			
-	   			<input type = "submit"/>
-	   		</form:form>
+		<div id="submit-form">		
+    		<form:form action = "registerNewNintendoComment" method = "POST" modelAttribute = "newComment">
+    			<label for = "topic">Topic</label><br>
+    			<form:input type = "text" id = "about" name = "about" path = "topic" style="color:black;"/>
+    			<form:errors path= "topic" cssClass="error" /><br>
+    			
+    			<label for = "comment">Thoughts</label><br>
+    			<form:textarea id ="comment" name = "comment" path = "commentText" rows ="5" cols ="80" style="color:black;"></form:textarea>
+    			<form:errors path="commentText" cssClass="error" /><br>
+    			
+    			<input type = "submit" style="color:black;"/>
+    		</form:form>
 	 	</div>
 	</div>
 </body>

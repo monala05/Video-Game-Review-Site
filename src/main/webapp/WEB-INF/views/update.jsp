@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <!--My stylesheet-->
-<link rel='stylesheet' type='text/css' media='screen' href='css/search.css'>
+<link rel='stylesheet' type='text/css' media='screen' href='css/update.css'>
 <!--Icon CDN-->
 <script src="https://kit.fontawesome.com/6e4d560886.js" crossorigin="anonymous"></script>
 <!-- Bootstrap stylesheet-->
@@ -24,26 +24,29 @@
 <body>
 	<%@include file="navigation.html"%>
     <div id = "main-body">
-    
-		<div id = "update-form-container">
-	        <form action="updateUser" method="post" >
-			<div>
+    	
+    	
+		<div id = "update-form-container" class = "card bg-dark">
+			
+			<div class = "card-header"><h1>Update account</h1></div>
+	        <form action="updateUser" method="post" class = "card-body">
+			<div style = "display:flex; justify-content:space-between; margin-bottom:5px;">
 				<label>Username:</label>
-				<input type="text" name="username" style = "color: black;"/>
-			</div>
-			<div>
+				<input type="text" name="username" style = "color: black; margin-left:15px;"/>
+			</div >
+			<div style = "display:flex; justify-content:space-between; margin-bottom:5px;">
 				<label>name:</label>
-				<input type="text" name="name" style = "color: black;"/>
+				<input type="text" name="name" style = "color: black; "/>
 			</div>
-			<div>
+			<div style = "display:flex; justify-content:space-between; margin-bottom:5px;">
 				<label>email:</label>
 				<input type="text" name="email" style = "color: black;"/>
 			</div>
-			<div>
+			<div style = "display:flex; justify-content:space-between;margin-bottom:5px;">
 				<label>password:</label>
 				<input type="text" name="password" style = "color: black;"/>
 			</div>			
-			<div>
+			<div style = "display:flex; justify-content:center;margin-top:10px;">
 				<input type="submit" value="Submit" style = "color: black;"/>
 			</div>
 			</form>

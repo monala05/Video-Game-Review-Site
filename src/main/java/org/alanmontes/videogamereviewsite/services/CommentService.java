@@ -14,4 +14,5 @@ public interface CommentService {
 	List<Comment> findByBoardOrderByCreateDateTime(String board);
 	List<Comment> findCommentsByBoardJoinUser(String board);
 	void save(Comment comment);
+	void remove(Comment comment);
 }

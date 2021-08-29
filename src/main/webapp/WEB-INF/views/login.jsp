@@ -22,16 +22,16 @@
 <body>
 	<%@include file="navigation.html"%>
 	 <div id = "main-body">
-	 	<div id = "login-card" style = "border: solid">
+	 	<div id = "login-card" class = "card bg-dark text-center">
 	 		<h1>Login</h1>
 	 		<div id = "login-form">
 	 			<form action="./login" id = "login-body" method ="post">
 	 				<input style="color: black;" type = "text" placeholder = "username" id = "username" name = "username" required><br>
 	 				<input style="color: black;" type = "text" placeholder = "password" id = "password" name = "password" required><br>
-	 				<input style="color: black;" type = "submit" value = "submit"/><br>	
+	 				<input style="margin-top:10px;" type = "submit" value = "submit" class = "btn btn-primary"/><br>	
 	 			</form>
 	 		</div>
-	 		<div id ="register">
+	 		<div id ="register" style = "margin-top:10px">
 	 			<a href = "register">
 	 				<button type="submit" class="btn mb-2" style="background-color:tomato; color: whitesmoke;">Not a member?</button>
 	 			</a>

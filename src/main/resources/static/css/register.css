@@ -1,2 +1,14 @@
 @charset "ISO-8859-1";
 @import "main.css";
+
+#form-container{
+	margin-top:2em;
+	align-items:center;
+}
+
+.seperate{
+	display:flex;
+	justify-content:space-between;
+	padding-bottom:10px;
+}
+

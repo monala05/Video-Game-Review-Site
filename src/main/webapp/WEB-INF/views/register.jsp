@@ -21,35 +21,36 @@
 <body>
 	<%@include file = "navigation.html"%>
 	 <div id = "main-body">
-	  	<h1>Registration Page</h1>
-		<form:form action="registerNewUser" method="post" modelAttribute="newUser">
-		<div>
-			<label>Username:</label>
-			<form:input type="text" path="username" name="username" style = "color: black;"/>
-			<form:errors path="username" cssClass="error" />
-		</div>
-		<div>
-			<label>Password:</label>
-			<form:input type="text" path="password" name="password" style = "color: black;"/>
-			<form:errors path="password" cssClass="error" />
-		</div>
-		<div>
-			<label>name:</label>
-			<form:input type="text" path="name" name="name" style = "color: black;"/>
-			<form:errors path="username" cssClass="error" />
-		</div>
-		<div>
-			<label>email:</label>
-			<form:input type="text" path="email" name="email" style = "color: black;"/>
-			<form:errors path="password" cssClass="error" />
-		</div>
-		
-		
-		<div>
-			<input type="submit" value="Submit" style = "color: black;"/>
-		</div>
-	</form:form>
-	<a href="/">Cancel</a>
+		 <div id="form-container" class = "card bg-dark">
+		  	<div class = "card-header"><h1>Registration Page</h1></div>
+			<form:form action="registerNewUser" method="post" modelAttribute="newUser" class = "card-body">
+			<div class = "seperate">
+				<label>Username:</label>
+				<form:input type="text" path="username" name="username" style = "color: black;"/>
+				<form:errors path="username" cssClass="error" />
+			</div>
+			<div class = "seperate">
+				<label>Password:</label>
+				<form:input type="text" path="password" name="password" style = "color: black;"/>
+				<form:errors path="password" cssClass="error" />
+			</div>
+			<div class = "seperate">
+				<label>name:</label>
+				<form:input type="text" path="name" name="name" style = "color: black;"/>
+				<form:errors path="username" cssClass="error" />
+			</div>
+			<div class = "seperate">
+				<label>email:</label>
+				<form:input type="text" path="email" name="email" style = "color: black;"/>
+				<form:errors path="password" cssClass="error" />
+			</div>
+			
+			<div style="display:flex;justify-content:center;">
+				<input type="submit" value="Submit" class="btn btn-primary"/>
+			</div>
+			</form:form>
+			<a href="/login"><button class ="btn btn-danger">Cancel?</button></a>
+		 </div>
 	 </div>
 </body>
 </html>

@@ -76,68 +76,8 @@ public class Game {
 		this.metacriticScore = metacriticScore;
 	}
 
-
-
-	public int getGameId() {
-		return gameId;
-	}
-
-
-
-	public void setGameId(int gameId) {
-		this.gameId = gameId;
-	}
-
-
-
-	public String getGameName() {
-		return gameName;
-	}
-
-
-
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
-	}
-
-
-
-	public String getSystem() {
-		return system;
-	}
-
-
-
-	public void setSystem(String system) {
-		this.system = system;
-	}
-
-
-
-	public String getGenre() {
-		return genre;
-	}
-
-
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-
-
-
-	public String getSummary() {
-		return summary;
-	}
-
-
-
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
-
-
-
+	
+	
 	public String getCover() {
 		return cover;
 	}
@@ -149,11 +89,59 @@ public class Game {
 	}
 
 
+	public int getGameId() {
+		return gameId;
+	}
+
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+
+	public String getGameName() {
+		return gameName;
+	}
+
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+
+	public String getSystem() {
+		return system;
+	}
+
+
+	public void setSystem(String system) {
+		this.system = system;
+	}
+
+
+	public String getGenre() {
+		return genre;
+	}
+
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+
+	public String getSummary() {
+		return summary;
+	}
+
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 
 	public int getMetacriticScore() {
 		return metacriticScore;
 	}
-
 
 
 	public void setMetacriticScore(int metacriticScore) {
@@ -161,11 +149,9 @@ public class Game {
 	}
 
 
-
 	public Set<Review> getReviews() {
 		return reviews;
 	}
-
 
 
 	public void setReviews(Set<Review> reviews) {
@@ -173,11 +159,9 @@ public class Game {
 	}
 
 
-
 	public Set<User> getUsers() {
 		return users;
 	}
-
 
 
 	public void setUsers(Set<User> users) {
@@ -185,12 +169,10 @@ public class Game {
 	}
 
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(cover, gameId, gameName, genre, metacriticScore, summary, system);
 	}
-
 
 
 	@Override
@@ -208,12 +190,13 @@ public class Game {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "Game [gameId=" + gameId + ", gameName=" + gameName + ", system=" + system + ", genre=" + genre
-				+ ", summary=" + summary + ", cover=" + cover + ", reviews=" + reviews + ", users=" + users + "]";
+				+ ", summary=" + summary + ", cover=" + cover + ", metacriticScore=" + metacriticScore + ", reviews="
+				+ reviews + ", users=" + users + "]";
 	}
+	
 	
     
 }

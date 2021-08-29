@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+@import "main.css";
+
+#update-form-container{
+	margin-top:2em;
+	padding: 10px;
+	padding-top:20px;	
+}
+
+.align-right{
+	display:flex; 
+	justify-content:space-between"
+}

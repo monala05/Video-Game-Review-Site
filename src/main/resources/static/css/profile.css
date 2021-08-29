@@ -1,17 +1,29 @@
 @import "main.css";
 
+div>p{
+	text-align:left;
+}
+
 #profile-card{
     margin-top: 50px;
     margin-bottom: 100px;
     display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
+    width: fit-content;
+}
+
+#profile-header{
+	display:flex;
+	justify-content:center;
 }
 
 #review-table{
     display: inline;
-    width: 70%;
+    width: 60%;
+}
+
+#profile-body{
+	font-size: 20px;
+	text-align:center;
 }
 
 .vertical-flex{
@@ -25,18 +37,14 @@
     border-radius: 5px;
 }
 .score-container{
-    display: flex; 
-    height: 220px;
+	display:flex;
+	height:100%;
     align-items: center;
     justify-content: center;
 }
 
-.score{
-    display: flex;
-    border-radius: 10px;
-    height: 60px;
-    width: 60px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 99, 71);
+.game-info{
+	display:flex;
+	flex-direction:column;
 }
+

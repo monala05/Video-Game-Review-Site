@@ -25,44 +25,53 @@
 <body>
 	<%@include file="navigation.html"%>
 	 <div id = "main-body">
-        <div id = "profile-card">
-            <h1 style = "margin-bottom: 20px;">${user.getUsername()}</h1>
-            <i class="fas fa-user-astronaut" style = "font-size: 140px;"></i>
-            <div id = "user-details">
-        		<h1>${user.name}</h1>
-        		<h1>${user.email}</h1>
-        		<h1>${user.userRole}</h1>
-        		<h1>System</h1>
+	 
+        <div id = "profile-card" class="card bg-dark">
+            <div id = "profile-header" class="card-header"><h1>${user.getUsername()}</h1></div>
+            <div id = "profile-body" class ="card-body">
+	            <i class="fas fa-user-astronaut" style="font-size:90px; margin-bottom:20px;"></i>
+        		<p>Username: ${user.name}</p>
+        		<p>email: ${user.email}</p>
+        		<p>Role: ${user.userRole}</p>
+	            <div>
+	            	<a href="./update"><input type="button" value ="update" class="btn btn-primary"/></a>
+	          	    <a href="./logout"><input type="button" value="logout" class="btn btn-danger"/></a>
+	            </div>
             </div>
-            <div><a href="./update"><input type="button" value ="update" class="btn-primary"/></a></div>
-            <div><a href="./logout"><input type="button" value="logout" class="btn-danger"/></a></div>
         </div>
 
         <div id = "review-table" class = "user-reviews">
-            <h1 class = "header-fonts" style="font-size: 68px;">${user.getUsername()}'s reviews</h1>
-            <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col" colspan = "2">Game</th>
-                    <th scope="col" width = "10%">User score</th>
-                    <th scope="col">User Review</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach items="${userReviews}" var="review">
-                  <tr>
-                    <th scope="row">${review.game.getGameName()}</th>
-                    <td>
-                        <img src="${review.game.getCover()}" alt="Video game not found" class = "thumbnail">
-                    </td>
-                    <td class="score-container">
-                        <div class = "score">${review.score}%</div>
-                    </td>
-                    <td>${review.reviewText}</td>
-                  </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
+            
+            <div class="card bg-dark">
+            	<div class="card-header">
+					<h1 class = "header-fonts" style="font-size: 48px;">${user.getUsername()}'s reviews</h1>
+            	</div>
+            	<div class="card-body">
+		            <table class="table">
+		                <thead class="thead-dark">
+		                  <tr>
+		                    <th scope="col" colspan = "2" width= "10%">Game</th>
+		                    <th scope="col" width = "15%">User score</th>
+		                    <th scope="col">User Review</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+		                  <c:forEach items="${userReviews}" var="review">
+		                  <tr>
+		                    <td>${review.game.getGameName()}</td>
+		                    <td>
+		                        <img src="${review.game.getCover()}" alt="Video game not found" class = "thumbnail">
+		                    </td>
+		                    <td>
+		                        <div class = "score">${review.score}%</div>
+		                    </td>
+		                    <td>${review.reviewText}</td>
+		                  </tr>
+		                  </c:forEach>
+		                </tbody> 
+		              </table>
+	              </div>
+              </div>
         </div>
     </div>
 </body>

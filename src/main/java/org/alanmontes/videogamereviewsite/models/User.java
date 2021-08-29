@@ -59,13 +59,13 @@ public class User{
 	}
 	
 	
-	public User(int userId, String name, String email, String username, String password) {
+	public User(String name, String email, String username, String password, String system) {
 		super();
-		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.system = system;
 	}
 
 

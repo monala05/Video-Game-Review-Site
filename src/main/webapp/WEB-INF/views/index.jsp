@@ -22,32 +22,31 @@
 	<%@include file="navigation.html"%>
 	
 	  <div id = "main-body" class="center">
-
-        <div id = "popular-games" class = "vertical-flex"`>
+        <div id = "popular-games" class = "vertical-flex">
             <div id = "popular-games-title"><h1>Current popular game reviews</h1></div>
             <div id = "current-pop-games" class = "horizontal-flex">
-
-                <div>
-                    <div class = "horizontal-flex center-game-title"><p>Legend of Zelda: Skyward Sword</p></div>
-                    <div>
+            
+                <div class="card bg-dark">
+                    <div class = "horizontal-flex center-game-title card-header" ><p>Legend of Zelda: Skyward Sword</p></div>
+                    <div class="card-body">
                        <img src="images/skyward.jpg" alt="skyward sword: legend of zelda"  
-                       style = "margin-right: 30px;border-radius: 10px;"> 
+                       style ="border-radius: 10px;"> 
                     </div>
                 </div>
 
-                <div>
-                    <div class = "horizontal-flex center-game-title"><p>Read Dead Redemption 2</p></div>
-                    <div>
+                <div class="card bg-dark">
+                    <div class = "horizontal-flex center-game-title card-header"><p>Read Dead Redemption 2</p></div>
+                    <div class="card-body">
                         <img src="images/dead.jpg" alt="Cowboy game" 
-                        style="margin-right: 30px; border-radius: 10px;">
+                        style="border-radius: 10px;">
                     </div>
                 </div>
-
-                <div>
-                    <div class = "horizontal-flex center-game-title"><p>Hades</p></div>
-                    <div>
+                
+                <div class="card bg-dark">
+                    <div class="horizontal-flex center-game-title card-header"><p>Hades</p></div>
+                    <div class="card-body">
                         <img src="images/hades.jpg" alt="Greek game" 
-                        style="border-radius: 10px;">
+                         style="border-radius: 10px;">
                     </div>
                 </div>
 
@@ -55,15 +54,12 @@
 
         </div>
 		
-        <div id = "review-table" class = "recent-reviews">
-            <table class="table">
-            	<caption>Scores provided by metacritic</caption>
+        <div id = "review-table" class = "recent-reviews card bg-dark">
+        	<div class="card-header"><h2>Best games according to Metacritic</h2></div>
+            <table class="table card-body">
                 <thead class="thead-dark">
                   <tr>
-                  	<th scope="col" colspan="4"><h2>Best reviewed by our users</h2></th>
-                  </tr>
-                  <tr>
-                    <th scope="col" colspan = "2">Game</th>
+                    <th scope="col">Game</th>
                     <th scope="col">Metacritic score</th>
                     <th scope="col">Summary</th>
                   </tr>
@@ -71,10 +67,12 @@
                 <tbody>
                 	<c:forEach items="${criticReviews}" var="review">
 	                    <tr>
-	                   		<td>${review.gameName}</td>
-	                   		<td><img src="${review.cover}" alt = "pic"/
-	                   			style="width:100px;height:150px;"></td>
-	                   		<td>${review.metacriticScore}</td>
+	                   		<td>
+	                   			${review.gameName}
+	                   			<img src="${review.cover}" alt = "pic"
+	                   			style="width:100px;height:150px;">
+	                   		</td>
+	                   		<td><div class = "score">${review.metacriticScore}</div></td>
 	                   		<td>${review.summary}</td>
 	                   	</tr>
                	    </c:forEach>
@@ -82,51 +80,51 @@
               </table>
         </div>
         
-        <div id = "review-table" class = "recent-reviews">
-            <table class="table">
-            	<caption>Scores provided by our users</caption>
+        <div id = "review-table" class = "recent-reviews card bg-dark">
+			<div class="card-header"><h2>Best reviewed by our users</h2></div>
+            <table class="table card-body">
                 <thead class="thead-dark">
                   <tr>
-                  	<th scope="col" colspan="4"><h2>Best reviewed by our users</h2></th>
-                  </tr>
-                  <tr>
-                    <th scope="col" colspan = "2">Game</th>
-                    <th scope="col">Average user score</th>
+                    <th scope="col">Game</th>
+                    <th scope="col" width="18%">Average user score</th>
                     <th scope="col">Summary</th>
                   </tr>
                 </thead>
                 <tbody>
                 	<c:forEach items="${userReviews}" var="review">
 	                    <tr>
-	                   		<td>${review.game.getGameName()}</td>
-	                   		<td><img src="${review.game.getCover()}" alt = "pic"/
-	                   			style="width:100px;height:150px;"></td>
-	                   		<td>${review.averageScore}</td>
+	                   		<td>
+	                   			${review.game.getGameName()}
+	                   			<img src="${review.game.getCover()}" alt = "pic" style="width:100px;height:150px;">
+	                   		</td>
+	                   		<td><div class = "score">${review.averageScore}</div></td>
 	                   		<td>${review.game.getSummary()}</td>
 	                   	</tr>
                	    </c:forEach>
                 </tbody>
               </table>
         </div>        
-        
-        
 
         <div id = "game-demos">
-            <div id = "demo-title"><h1>Upcoming games</h1></div>
+            <div id = "demo-title" class = ""><h1>Upcoming games</h1></div>
             <div id = "gifs">
-                <div id = "demo-one">
-                    <h3>FIFA 22</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/o1igaMv46SY" 
-                    title="YouTube video player" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
+                <div id = "demo-one" class = "card bg-dark">
+                    <div class = "card-header"><h2>FIFA 22</h2></div>
+                    <div class="card-body">
+	                    <iframe width="560" height="315" src="https://www.youtube.com/embed/o1igaMv46SY" 
+	                    title="YouTube video player" frameborder="0" 
+	                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+	                    allowfullscreen></iframe>
+                    </div>
                 </div>
-                <div id = "demo-two">
-                    <h1>Hogwarts Legacy</h1>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1O6Qstncpnc?controls=0" 
-                    title="YouTube video player" frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                     allowfullscreen></iframe>
+                <div id = "demo-two" class = "card bg-dark">
+                    <div class="card-header"><h2>Hogwarts Legacy</h2></div>
+                    <div class="card-body">
+	                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1O6Qstncpnc?controls=0" 
+	                    title="YouTube video player" frameborder="0" 
+	                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+	                     allowfullscreen></iframe>
+                     </div>
                 </div>
             </div>
         </div>

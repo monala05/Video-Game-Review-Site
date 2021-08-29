@@ -144,6 +144,12 @@ public class Review {
 		return reviewId == other.reviewId && reviewText == other.reviewText && score == other.score
 				&& Objects.equals(user, other.user);
 	}
+
+	@Override
+	public String toString() {
+		return "Review [reviewId=" + reviewId + ", score=" + score + ", reviewText=" + reviewText + ", averageScore="
+				+ averageScore + ", createDateTime=" + createDateTime + ", updateDateTime=" + updateDateTime + "]";
+	}
 	
 	
 	
